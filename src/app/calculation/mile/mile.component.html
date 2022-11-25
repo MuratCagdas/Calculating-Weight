@@ -1,0 +1,64 @@
+<app-calculation></app-calculation>
+<div class="container text-center  mt-5">
+    <div class="row">
+        <div class="col">
+            <table class="table table-dark table-bordered ">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th scope="col">Malzeme</th>
+                        <th scope="col">d</th>
+                        <th scope="col">Uzunluk</th>
+                        <th scope="col">Adet</th>
+                        <th scope="col">Sonuç (kg)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let MileItem of CalculateListMile ">
+                        <th><button type="button" class="btn btn-light" (click)="RemoveItemMileList(MileItem)">
+                                Sil</button></th>
+                        <th scope="row"> {{MileItem.material}}</th>
+                        <th scope="row"> {{MileItem.dValue}}</th>
+                        <th scope="row"> {{MileItem.LongValue}}</th>
+                        <th scope="row"> {{MileItem.PieceeValue}}</th>
+                        <th scope="row"> {{MileItem.ResultValue}}</th>
+                    </tr>
+                </tbody>
+            </table>
+            <div><button type="button" class="btn btn-dark" (click)="clearAllMileLS()">
+                    Hepsini Sil</button></div>
+        </div>
+        <div class="col bg-danger">
+            <div class="row p-3">
+                <img class="img-thumbnail w-25 mx-auto" src={{MileView}} alt="" width="auto" height="auto" />
+            </div>
+            <div class="row p-3 ">
+                <mat-form-field appearance="fill">
+                    <mat-label>MALZEME</mat-label>
+                    <mat-select [(ngModel)]="Dropdwonid" (Change)="changeDropdownMile()">
+                        <mat-option *ngFor="let dropdownItem of DropdownSelected" [value]="dropdownItem.dropwdonId">
+                            {{dropdownItem.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="row p-3">
+                <div class="col-sm-4 text-end">t= </div>
+                <div class="col-sm-8 text-start"><input [(ngModel)]="d" type="number" placeholder="mm"> </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-sm-4 text-end">Uzunluk= </div>
+                <div class="col-sm-8 text-start"><input [(ngModel)]="Long" type="number" placeholder="mm"> </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-sm-4 text-end">Adet= </div>
+                <div class="col-sm-8 text-start"><input [(ngModel)]="piecee" type="number" placeholder="sayı"> </div>
+            </div>
+            <div class="row p-3 text-center vstack">
+                <div class="col "> <button type="button"
+                        [class.disabled]="((d && Long && piecee && Dropdwonid )  == null)  " (click)="CalculateMile()"
+                        class="btn btn-outline-secondary">Hesapla</button> </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<app-calculation></app-calculation>
+<div class="container text-center  mt-5">
+    <div class="row">
+        <div class="col">
+            <table class="table table-dark table-bordered ">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th scope="col">Malzeme</th>
+                        <th scope="col">t</th>
+                        <th scope="col">h</th>
+                        <th scope="col">w</th>
+                        <th scope="col">L</th>
+                        <th scope="col">Adet</th>
+                        <th scope="col">Sonuç (kg)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let BoxProfileItem of CalculateListBP ">
+                        <th><button type="button" class="btn btn-light"
+                                (click)="RemoveItemBoxProfieList(BoxProfileItem)">
+                                Sil</button></th>
+                        <th scope="row"> {{BoxProfileItem.material}}</th>
+                        <th scope="row"> {{BoxProfileItem.tValue}}</th>
+                        <th scope="row"> {{BoxProfileItem.hValue}}</th>
+                        <th scope="row"> {{BoxProfileItem.wValue}}</th>
+                        <th scope="row"> {{BoxProfileItem.LValue}}</th>
+                        <th scope="row"> {{BoxProfileItem.PieceeValue}}</th>
+                        <th scope="row"> {{BoxProfileItem.ResultValue}}</th>
+                    </tr>
+                </tbody>
+            </table>
+            <div><button type="button" class="btn btn-dark" (click)="clearAllBoxProfileLS()">
+                    Hepsini Sil</button></div>
+        </div>
+        <div class="col bg-danger">
+            <div class="row p-3">
+                <img class="img-thumbnail w-25 mx-auto" src={{BoxProfileView}} alt="" width="auto" height="auto" />
+            </div>
+            <div class="row p-3 ">
+                <mat-form-field appearance="fill">
+                    <mat-label>MALZEME</mat-label>
+                    <mat-select [(ngModel)]="Dropdwonid" (Change)="changeDropdownBP()">
+                        <mat-option *ngFor="let dropdownItem of DropdownSelected" [value]="dropdownItem.dropwdonId">
+                            {{dropdownItem.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="row p-3">
+                <div class="col-sm-4 text-end">t= </div>
+                <div class="col-sm-8 text-start"><input [(ngModel)]="t" type="number" placeholder="mm"> </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-sm-4 text-end">h= </div>
+                <div class="col-sm-8 text-start"><input [(ngModel)]="h" type="number" placeholder="mm"> </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-sm-4 text-end">w= </div>
+                <div class="col-sm-8 text-start"><input [(ngModel)]="w" type="number" placeholder="mm"> </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-sm-4 text-end">L= </div>
+                <div class="col-sm-8 text-start"><input [(ngModel)]="L" type="number" placeholder="mm"> </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-sm-4 text-end">Adet= </div>
+                <div class="col-sm-8 text-start"><input [(ngModel)]="piecee" type="number" placeholder="sayı"> </div>
+            </div>
+            <div class="row p-3 text-center vstack">
+                <div class="col "> <button type="button"
+                        [class.disabled]="((t && h && w && L && piecee && Dropdwonid )  == null)  "
+                        (click)="CalculateBP()" class="btn btn-outline-secondary">Hesapla</button> </div>
+            </div>
+        </div>
+    </div>
+</div>

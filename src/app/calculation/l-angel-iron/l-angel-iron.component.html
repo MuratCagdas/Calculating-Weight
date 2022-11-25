@@ -1,0 +1,77 @@
+<app-calculation></app-calculation>
+<div class="container text-center  mt-5">
+    <div class="row">
+        <div class="col">
+            <table class="table table-dark table-bordered ">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th scope="col">Malzeme</th>
+                        <th scope="col">t</th>
+                        <th scope="col">L1</th>
+                        <th scope="col">L2</th>
+                        <th scope="col">Uzunluk</th>
+                        <th scope="col">Adet</th>
+                        <th scope="col">Sonuç (kg)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let AngelIronItem of CalculateListAI ">
+                        <th><button type="button" class="btn btn-light"
+                                (click)="RemoveItemAngelIronList(AngelIronItem)">
+                                Sil</button></th>
+                        <th scope="row"> {{AngelIronItem.material}}</th>
+                        <th scope="row"> {{AngelIronItem.tValue}}</th>
+                        <th scope="row"> {{AngelIronItem.L1Value}}</th>
+                        <th scope="row"> {{AngelIronItem.L2Value}}</th>
+                        <th scope="row"> {{AngelIronItem.LongValue}}</th>
+                        <th scope="row"> {{AngelIronItem.PieceeValue}}</th>
+                        <th scope="row"> {{AngelIronItem.ResultValue}}</th>
+                    </tr>
+                </tbody>
+            </table>
+            <div><button type="button" class="btn btn-dark" (click)="clearAllAngelIronLS()">
+                    Hepsini Sil</button></div>
+        </div>
+        <div class="col bg-danger">
+            <div class="row p-3">
+                <img class="img-thumbnail w-25 mx-auto" src={{AngelIronView}} alt="" width="auto" height="auto" />
+            </div>
+            <div class="row p-3 ">
+                <mat-form-field appearance="fill">
+                    <mat-label>MALZEME</mat-label>
+                    <mat-select [(ngModel)]="Dropdwonid" (Change)="changeDropdownAI()">
+                        <mat-option *ngFor="let dropdownItem of DropdownSelected" [value]="dropdownItem.dropwdonId">
+                            {{dropdownItem.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="row p-3">
+                <div class="col-sm-4 text-end">t= </div>
+                <div class="col-sm-8 text-start"><input [(ngModel)]="t" type="number" placeholder="mm"> </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-sm-4 text-end">L1= </div>
+                <div class="col-sm-8 text-start"><input [(ngModel)]="L1" type="number" placeholder="mm"> </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-sm-4 text-end">L2= </div>
+                <div class="col-sm-8 text-start"><input [(ngModel)]="L2" type="number" placeholder="mm"> </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-sm-4 text-end">Uzunluk= </div>
+                <div class="col-sm-8 text-start"><input [(ngModel)]="Long" type="number" placeholder="mm"> </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-sm-4 text-end">Adet= </div>
+                <div class="col-sm-8 text-start"><input [(ngModel)]="piecee" type="number" placeholder="sayı"> </div>
+            </div>
+            <div class="row p-3 text-center vstack">
+                <div class="col "> <button type="button"
+                        [class.disabled]="((t && L1 && L2 && Long && piecee && Dropdwonid )  == null)  "
+                        (click)="CalculateAI()" class="btn btn-outline-secondary">Hesapla</button> </div>
+            </div>
+        </div>
+    </div>
+</div>
